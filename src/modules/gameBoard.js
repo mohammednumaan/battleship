@@ -5,6 +5,7 @@ const gameBoard = () => {
     let board = new Array(10).fill(' ').map(item => (new Array(10).fill(' ')))
     let allShips = []
     let missedAttack = []
+    let allShipSunk = false;
 
     const findShip = (array, target) => {
         return array.findIndex(ship => JSON.stringify(target) === JSON.stringify(ship))    
@@ -64,6 +65,7 @@ const gameBoard = () => {
 
         if(board[x][y] === ' '){
             missedAttack.push([x,y])
+            board[x][y] = 'missed'
             shipHit = false;
         }
         return shipHit;
@@ -76,17 +78,29 @@ const gameBoard = () => {
     // CHECKS IF ALL SHIPS ON THE BOARD ARE SUNK
 
     const allSunk = () => {
-        let allShipSunk = false;
         if (allShips.every(shipSunk)){
             allShipSunk = true;
         }
         else allShipSunk = false;
         return allShipSunk;
     }
+
+    // FIND TAKEN COORDINATES/MOVES
+
+    const findTakenCoords = () => {
+        let array = []
+        for (let i = 0; i < 10; i++){
+            for (let j = 0; j < 10; j++){
+                if (board[i][j] === 'attacked-ship' || board[i][j] === 'missed') array.push([i,j])
+            }
+        }
+        return array;
+
+    }
     
     // RETURN 
 
-    return {board, allShips, placeShip, isValidCoords, recieveAttack, findShip, allSunk, missedAttack}
+    return {board, allShips, allShipSunk, placeShip, isValidCoords, recieveAttack, findShip, allSunk, missedAttack, findTakenCoords}
 }
 
 // EXPORT

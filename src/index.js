@@ -1,4 +1,5 @@
-const board = require('./gameBoard')
+const board = require('./modules/gameBoard')
+const Player = require('./modules/player')
 
 let game = board()
-console.log(game)
+let player = new Player('idk')

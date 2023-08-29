@@ -1,7 +1,7 @@
 // IMPORT
 
-const gameBoard = require('./gameBoard')
-const shipFactory = require('./ship')
+const gameBoard = require('../modules/gameBoard')
+const shipFactory = require('../modules/ship')
 
 // INITIALIZE 
 
@@ -73,6 +73,15 @@ test('TEST 5 : Check if an attacked ship is sunk', () => {
 test('TEST 6 : Check if all ships on the board are sunk', () => {
     board.recieveAttack(0, 3)
     expect(board.allSunk()).toEqual(true)
+})
+
+// Test for checking already clicked/taken coordinates
+
+test('TEST 7 : Check if a pair of coordinates are taken', () => {
+    board.placeShip(shipFour, 2, 4)
+    board.recieveAttack(3,6)
+    board.recieveAttack(3,4)
+    expect(board.findTakenCoords()).toEqual([[0, 3], [0, 4], [0, 6], [1, 2], [2, 2], [3, 2], [3, 4], [3, 6]])
 })
 
 // END OF TESTS

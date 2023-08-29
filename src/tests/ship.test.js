@@ -1,11 +1,11 @@
 // IMPORT
 
-const shipFactory = require('./ship')
+const Ship = require('../tests/ship.test')
 
 // INITIALIZE TEST SHIPS
 
-const testShipOne = new shipFactory('Carrier', 5, true)
-const testShipTwo = new shipFactory('Submarine', 2, false)
+const testShipOne = new Ship('Carrier', 5, true)
+const testShipTwo = new Ship('Submarine', 2, false)
 
 // TESTS
 

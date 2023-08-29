@@ -1,6 +1,6 @@
 // SHIP CLASS
 
-class shipFactory{
+class Ship{
 
     // Construct a ship object
 
@@ -33,20 +33,20 @@ class shipFactory{
 
     // Checks if the ship is sunk
 
-    isSunk(){
-
-        let sunk = false;
-        this.hits.every(index => {
-            if(this.hits.length === this.length && index === true) sunk = true  ;
-            else sunk = false;
-        });
-
-        return sunk;
+    sunkValue(index){
+        let value = (index === true) ? true : false;
+        return value;
     }
+
+    isSunk(){
+        if(this.hits.every(this.sunkValue)) return true;
+        return false;
+    }
+
 }
 
 // EXPORT
 
-module.exports = shipFactory;
+module.exports = Ship;
 
 // END OF CODE
