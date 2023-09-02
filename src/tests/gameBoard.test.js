@@ -1,15 +1,20 @@
 // IMPORT
 
 const gameBoard = require('../modules/gameBoard')
-const shipFactory = require('../modules/ship')
 
 // INITIALIZE 
 
-let board = gameBoard();
-let shipOne = new shipFactory('BoatOne', 2, false)
-let shipTwo = new shipFactory('BoatTwo', 3, true)
-let shipThree = new shipFactory('BoatThree', 2, false)
-let shipFour = new shipFactory('BoatFour', 5, true)
+let game = gameBoard();
+
+let shipOne = game.allShips[4]
+
+let shipTwo = game.allShips[3]
+shipTwo.vertical = true;
+
+let shipThree = game.allShips[2]
+
+let shipFour = game.allShips[0]
+shipFour.vertical = true;
 
 // TESTS
 
@@ -17,53 +22,54 @@ let shipFour = new shipFactory('BoatFour', 5, true)
 
 test('TEST 1 : Placing Ships', () => {
 
-    board.placeShip(shipOne, 0, 3)
-    board.placeShip(shipTwo, 1, 2)
+    game.placeShip(shipOne, 0, 3, game.board)
+    game.placeShip(shipTwo, 1, 2, game.board)
 
-    expect(board.board[0][3]).toEqual('placed-ship')
-    expect(board.board[0][4]).toEqual('placed-ship')
-    expect(board.board[1][2]).toEqual('placed-ship')
-    expect(board.board[2][2]).toEqual('placed-ship')
+    expect(game.board[0][3]).toEqual('p')
+    expect(game.board[0][4]).toEqual('p')
+    expect(game.board[1][2]).toEqual('p')
+    expect(game.board[2][2]).toEqual('p')
+    expect(game.board[3][2]).toEqual('p')
 });
 
 // Test for checking valid coordinates
 
 test('TEST 2 : Check Valid Coordinates' , () => {
 
-    expect(board.placeShip(shipTwo, 0, 3)).toEqual(false)
+    expect(game.placeShip(shipTwo, 0, 3)).toEqual(false)
 });
 
 test('TEST 2.1 : Check if given coordinates are out of bounds', () => {
 
-    expect(board.isValidCoords(shipFour, 6,9)).toEqual(false)
-    expect(board.isValidCoords(shipThree, 0,8)).toEqual(true)
+    expect(game.isValidCoords(shipThree, 0,8)).toEqual(false)
+    expect(game.isValidCoords(shipFour, 6,9)).toEqual(false)
 });
 
 // Test for checking if the placed ships are pushed into the ships array
 
-test('TEST 3 : Check if Ships are pushed into the allShip Array', () => {
+// test('TEST 3 : Check if Ships are pushed into the allShip Array', () => {
 
-    expect(board.allShips).toEqual([shipOne,shipTwo])
-});
+//     expect(board.allShips).toEqual([shipOne,shipTwo])
+// });
 
 // Test for recieveing attacks
 
 test('TEST 4 : Check if the board is recieving attacks', () => {
 
-    board.recieveAttack(0,4)
+    game.recieveAttack(0,4)
     expect(shipOne.hits).toEqual([false,true])
     
-    board.recieveAttack(0,6)
-    expect(board.missedAttack).toEqual([[0,6]])
+    game.recieveAttack(0,6)
+    expect(game.missedAttack).toEqual([[0,6]])
 });
 
 // Test for checking a ship is sunk
 
 test('TEST 5 : Check if an attacked ship is sunk', () => {
 
-    board.recieveAttack(1, 2)
-    board.recieveAttack(2, 2)
-    board.recieveAttack(3, 2)
+    game.recieveAttack(1, 2)
+    game.recieveAttack(2, 2)
+    game.recieveAttack(3, 2)
     expect(shipTwo.isSunk()).toEqual(true)
 
 });
@@ -71,17 +77,24 @@ test('TEST 5 : Check if an attacked ship is sunk', () => {
 // Test for checking if all ships are sunk
 
 test('TEST 6 : Check if all ships on the board are sunk', () => {
-    board.recieveAttack(0, 3)
-    expect(board.allSunk()).toEqual(true)
+    game.recieveAttack(0, 3)
+    expect(game.allSunk()).toEqual(true)
 })
 
 // Test for checking already clicked/taken coordinates
 
 test('TEST 7 : Check if a pair of coordinates are taken', () => {
-    board.placeShip(shipFour, 2, 4)
-    board.recieveAttack(3,6)
-    board.recieveAttack(3,4)
-    expect(board.findTakenCoords()).toEqual([[0, 3], [0, 4], [0, 6], [1, 2], [2, 2], [3, 2], [3, 4], [3, 6]])
+    game.placeShip(shipFour, 2, 4)
+    game.recieveAttack(3,6)
+    game.recieveAttack(3,4)
+    expect(game.findTakenCoords()).toEqual([[0, 3], [0, 4], [0, 6], [1, 2], [2, 2], [3, 2], [3, 4], [3, 6]])
 })
+
+// Test for checking machine's placement of ships
+
+// test('TEST 8 : Check if machine ships are placed', () => {
+//     board.placeMachineShips()
+//     console.log(board.board)
+// })
 
 // END OF TESTS

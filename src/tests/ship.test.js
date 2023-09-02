@@ -1,6 +1,6 @@
 // IMPORT
 
-const Ship = require('../tests/ship.test')
+const Ship = require('../modules/ship')
 
 // INITIALIZE TEST SHIPS
 
@@ -16,7 +16,6 @@ test('TEST 1 : Check if the Ship is an object' , () => {
         "coords" : [], "hits": [false,false,false,false,false], "vertical": true, "length": 5, "name": "Carrier"
     });
 });
-
 
 // Check if the ship is in a vertical direction
 

@@ -1,0 +1,19 @@
+/* BOARD CONTAINER */
+
+.board-container{
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 526px;
+    height: 526px;
+    
+    border: 1px solid black;
+}
+
+.board-cell{
+
+    width: 51px;
+    height: 51px;
+
+    border: 1px solid black;
+}
