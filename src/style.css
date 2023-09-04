@@ -1,19 +1,220 @@
+
+/* CUSTOM FONT */
+
+@font-face {
+    font-family: pixel;
+    src: url('../assets/pixel.ttf');
+}
+
+/* BODY */
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #D7C49EFF;
+}
+
+/* HEADER CONTAINER */
+
+.header{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #343148FF;
+
+    font-family: pixel;
+}
+
+.header > h1{
+    color: #D7C49EFF;
+}
+
+
+/* INSTRUCTIONS */
+
+.instructions{
+    display: flex;
+    
+    margin: 0 auto;
+    margin-top: 50px;
+
+    width: 800px;
+    height: 500px;
+
+    border: 5px solid #343148FF;
+    background-color: #343148FF;
+    border-radius: 40px;
+
+}
+
+.main-instructions{
+    padding: 20px;
+
+    font-family: pixel;
+    font-size: 15px;
+
+    word-spacing: 5px;
+    line-height: 0.5cm;
+
+}
+
+.main-instructions > h3{
+    font-family: pixel;
+    font-weight: 800;
+
+    margin-left: 300px;
+
+    color: #D7C49EFF;
+}
+.main-instructions > div{
+    color: #D7C49EFF ;
+    font-weight: 700;
+}
+
+.main-instructions > div > ul > li{
+    margin-bottom: 15px;
+}
+
+.note{
+    margin-left: 30px;
+    margin-top: 30px;
+    color: green;
+}
+
+
+.not-visible{
+    visibility: hidden;
+}
+
+/* START GAME BUTTON */
+
+#start-game-btn{
+    width: 800px;
+    padding: 10px;
+
+    margin-left: 365px;
+    margin-top: 10px;
+
+    background-color: #343148FF;
+    color: #D7C49EFF;
+
+    font-family: pixel;
+
+    border-radius: 10px;
+    box-shadow: 0 9px green;
+}
+
+#start-game-btn:active{
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+
 /* BOARD CONTAINER */
 
 .board-container{
+
+    display: flex;
+    justify-content: space-around;
+}
+.user-board,
+.machine-board{
     display: flex;
     flex-wrap: wrap;
 
     width: 526px;
     height: 526px;
     
-    border: 1px solid black;
+    margin-top: 50px;
+    
+    border: 3px solid #343148FF;
+
 }
 
-.board-cell{
+.user-cell,
+.machine-cell{
 
     width: 51px;
     height: 51px;
 
-    border: 1px solid black;
+    border: 1px solid #343148FF;
 }
+
+/* SHIP PLACEMENT AND HIGHLIGHT */
+
+.ship-highlight{
+
+    background-color: green;
+    border-radius: 3px;
+}
+
+.placed-ship{
+    background-color: #343148FF;
+    border-radius: 3px;
+}
+
+.wrong-ship{
+    background-color: red;
+    border-radius: 3px;
+}
+
+.ship-hit{
+    background-color: maroon;
+    border-radius: 3px;
+}
+
+.miss-hit{
+    background-color: aqua;
+    border-radius: 3px;
+}
+
+/* WINNER DIV */
+
+.winner-div{
+
+    text-align: center;
+    position: absolute;
+
+    margin-left: 450px;
+    margin-top: -400px;
+    padding: 30px;
+
+    border: 5px solid #343148FF;
+    border-radius: 10px;
+
+    background-color: #343148FF;
+    color: #D7C49EFF;
+
+    font-family: pixel;
+}
+
+#restart-btn{
+
+    font-family: pixel;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #D7C49EFF;
+    color: #343148FF;
+    box-shadow: 0 9px green;
+}
+#restart-btn:active{
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+  }
+
+

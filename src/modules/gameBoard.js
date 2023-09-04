@@ -1,5 +1,6 @@
 const Player = require('./player')
 const Ship = require('./ship')
+
 const gameBoard = () => {
 
     // INITIALIZE ARRAYS
@@ -30,11 +31,11 @@ const gameBoard = () => {
         for (let i = 0; i < currentShip.length; i++){
 
             if (currentShip.vertical === false){
-                valid = ((y - 1 + i) + currentShip.length > 9 ) ? false : true
+                valid = ((y - 1) + i + currentShip.length > 9 ) ? false : true
                 return valid
             }
             if (currentShip.vertical === true){
-                valid = ((x - 1  + i) + currentShip.length > 9) ? false : true
+                valid = ((x - 1) + i + currentShip.length > 9) ? false : true
                 return valid
             }
         }
@@ -47,7 +48,7 @@ const gameBoard = () => {
 
     const placeShip = (ship, x, y) => {
         
-        let coords = findPlacedShipCoords(ship, x, y)
+        let coords = findPlacedShipCoords(ship, x, y, ship.vertical)
 
         if(isValidCoords(ship, x, y) === false){
             return false;
@@ -60,15 +61,16 @@ const gameBoard = () => {
 
         coords.forEach(coord => {
             if (ship.vertical === true){
-                ship.shipCoords(coord, y)
                 board[coord][y] = 'p'
+                ship.shipCoords(coord, y)
             }
             if (ship.vertical === false){
-                ship.shipCoords(x, coord)
                 board[x][coord] = 'p'
+                ship.shipCoords(x, coord)
             }
-            shipArray.push(ship)
+            
         });
+        shipArray.push(ship)
 
         return true;
                 
@@ -78,13 +80,15 @@ const gameBoard = () => {
     // RECIEVES ATTACKS ON THE BOARD
 
     const recieveAttack = (x, y) => {
+    
         let shipHit = null;
+        allCoords.push([x, y])
         if (board[x][y] === 'p'){
             shipArray.forEach(ship => {
                 let currentShip = ship.coords
+        
                 let currentIndex = findShip(currentShip, [x,y])
-                console.log(currentIndex)
-                if (currentIndex !== -1) ship.hit(currentIndex)
+                if (currentIndex !== -1) ship.hit(currentIndex);
                 board[x][y] = 'a'
             })
             shipHit = true;
@@ -114,29 +118,34 @@ const gameBoard = () => {
 
     // FIND TAKEN COORDINATES/MOVES
 
-    const findTakenCoords = () => {
-        let array = []
+    const findTakenCoords = (x, y) => {
+    
         for (let i = 0; i < 10; i++){
-            for (let j = 0; j < 10; j++){
-                if (board[i][j] === 'a' || board[i][j] === 'm') array.push([i,j])
-            }
+            for(let j = 0; j < 10; j++){
+                if (board[i][j] === 'a' || board[i][j] === 'm') return true;
+            }   
         }
-        return array;
+        return false;
 
     }
 
-    const findPlacedShipCoords = (ship, x, y) => {
+    
+
+    const findPlacedShipCoords = (ship, x, y, vertical) => {
         let array = []
-        if(ship.vertical === false){
-            array.push(y)
+        let xCoord = Number(x)
+        let yCoord = Number(y)
+        if(vertical === false){
+            array.push(yCoord)
             for (let i = 1; i < ship.length; i++){
-                array.push(Number(y + i))
+                array.push(yCoord + i)
+
             }
         }
-        if(ship.vertical === true){
-            array.push(x)
+        if(vertical === true){
+            array.push(xCoord)
             for (let i = 1; i < ship.length; i++){
-                array.push(Number(x + i))
+                array.push(xCoord + i)
             }
         }
 
@@ -165,8 +174,7 @@ const gameBoard = () => {
     // GENERATE RANDOM NUMBERS FOR MACHINE MOVES
 
     const randomCoordinate = () => {
-        let coordinate = Math.floor(Math.random() * 9)
-        if (coordinate === 0) return randomCoordinate();
+        let coordinate = Math.floor(Math.random() * 10)
         return coordinate;
     }
 
@@ -212,19 +220,13 @@ const gameBoard = () => {
         findTakenCoords, 
         findPlacedShipCoords,
         recieveAttack, 
-        allSunk
+        allSunk,
+        randomCoordinate,
+        findShip
     }
 }
 
-const user = new Player('user');
-const machine = new Player('cpu');
-
-user.game.placeShip(user.game.allShips[4], 0 , 0)
-machine.game.placeShip(machine.game.allShips[4], 4, 0)
-
-user.switchTurn()
-user.attackShip(machine, 4, 1)
-console.log(machine.allShips[4].hits)
+// EXPORT
 
 module.exports = gameBoard;
 

@@ -1,9 +1,13 @@
-import {gameLoop, generateBoard } from './modules/dom'
 import './style.css'
+import { gameLoop } from './modules/dom'
+import { gameInstructions, header, startGame } from './modules/starterDOM'
 
-const board = require('./modules/gameBoard')
+
+const gameBoard = require('./modules/gameBoard')
 const Player = require('./modules/player')
 
 
-generateBoard()
-let player = new Player('idk')
+header()
+startGame()
+
+

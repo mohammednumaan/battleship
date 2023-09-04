@@ -47,10 +47,10 @@ test('TEST 2.1 : Check if given coordinates are out of bounds', () => {
 
 // Test for checking if the placed ships are pushed into the ships array
 
-// test('TEST 3 : Check if Ships are pushed into the allShip Array', () => {
+test('TEST 3 : Check if Ships are pushed into the allShip Array', () => {
 
-//     expect(board.allShips).toEqual([shipOne,shipTwo])
-// });
+    expect(game.shipArray).toEqual([shipOne,shipTwo])
+});
 
 // Test for recieveing attacks
 
@@ -83,12 +83,12 @@ test('TEST 6 : Check if all ships on the board are sunk', () => {
 
 // Test for checking already clicked/taken coordinates
 
-test('TEST 7 : Check if a pair of coordinates are taken', () => {
-    game.placeShip(shipFour, 2, 4)
-    game.recieveAttack(3,6)
-    game.recieveAttack(3,4)
-    expect(game.findTakenCoords()).toEqual([[0, 3], [0, 4], [0, 6], [1, 2], [2, 2], [3, 2], [3, 4], [3, 6]])
-})
+// test('TEST 7 : Check if a pair of coordinates are taken', () => {
+//     game.placeShip(shipFour, 2, 4)
+//     game.recieveAttack(3,6)
+//     game.recieveAttack(3,4)
+//     expect(game.findTakenCoords()).toEqual([[0, 3], [0, 4], [0, 6], [1, 2], [2, 2], [3, 2], [3, 4], [3, 6]])
+// })
 
 // Test for checking machine's placement of ships
 

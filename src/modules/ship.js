@@ -7,7 +7,7 @@ class Ship{
     constructor(name, length, vertical = false){
         this.name = name
         this.length = length
-        this.vertical = vertical;
+        this.vertical = vertical
         this.hits = Array(length).fill(false)
         this.coords = []
     }
