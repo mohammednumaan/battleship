@@ -1,6 +1,6 @@
 # battleship
 
-![battleship-title](https://github.com/mohammednumaan/battleship/assets/138296610/c725b5f8-5fa6-42bf-b277-3592eff5efb2)
+![battleship-title](https://github.com/mohammednumaan/battleship/assets/138296610/9f57d8a5-0a67-4121-ad8c-ba3e56e89ba8)
 
 # Demo
 
