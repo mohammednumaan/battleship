@@ -1,6 +1,6 @@
 # battleship
 
-![battleship-title](https://github.com/mohammednumaan/battleship/assets/138296610/7017682d-c7a9-4fa9-94e2-118aa12a876b)
+![battleship-title](https://github.com/mohammednumaan/battleship/assets/138296610/c725b5f8-5fa6-42bf-b277-3592eff5efb2)
 
 # Demo
 
@@ -49,7 +49,7 @@ Testing for this project was done through <b>Jest</b>.
 <ul>
   <li>This game is not supported on mobile, it wasn't meant to make it responsive across platforms. The main objective of this project was to implement Testing using <b>Jest</b> and build the strategy game and <b>NOT</b> to make it responsive!</li>
 
-  <li><li>The Machine's AI is not smart enough to make adjacent hits.</li></li>
+  <li>The Machine's AI is not smart enough to make adjacent hits.</li>
 </ul>
 
 # Assets 
