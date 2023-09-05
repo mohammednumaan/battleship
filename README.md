@@ -14,20 +14,20 @@ Battleship is a strategy type guessing game for two players. It is played on rul
 
 # Implementations
 
-<ul>UI-Side Implementation
+<ul><b>UI-Side Implementation</b>
   <li>A Simple and Interactive Webpage.</li>
   <li>Highlights ships during placements.</li>
   <li>Displays Valid Coordinates during User's ship placement.</li>
   <li>Displays different color's if the player's had missed a shot or attacked a ship on the board.</li>
 </ul>
-<ul>User-Side Implementation
+<ul><b>User-Side Implementation</b>
   <li>User's can place ships on their board.</li>
   <li>User's can change the placement direction while placing the ships on their board.</li>
   <li>User's can attack the Machine's board.</li>
   <li>User's can restart the game after the game has ended.</li>
 </ul>
 
-<ul>Machine-Side Implementation
+<ul><b>Machine-Side Implementation</b>
   <li>The Machine can place their ships on their board at random coordinates using <b>randomCoordinate()</b>.</li>
   <li>The Machine can generate random direction to place their ships on their board using <b>randomDirection()</b>.</li>
   <li>The Machine can attack User's board at random coordinates using a simple AI.</li>
