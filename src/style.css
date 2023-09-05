@@ -142,6 +142,72 @@ body{
     border: 1px solid #343148FF;
 }
 
+#direction-button{
+
+    font-family: pixel;
+    padding: 10px;
+    
+    border: 2px solid #343148FF;
+    border-radius: 10px;
+
+    background-color: #343148FF;
+    color: #D7C49EFF;
+
+    margin-top: -17px;
+    margin-left: 320px;
+
+    border-radius: 10px;
+    box-shadow: 0 9px green;
+}
+
+#direction-button:active{
+
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+
+}
+
+.name-container{
+
+    display: flex;
+    justify-content: space-between;
+   
+}
+.user-board-name{
+    font-family: pixel;
+
+    margin-top: -568px;
+    margin-left: 320px;
+    margin-right: 0px;
+    
+    margin-bottom: 570px;
+    padding: 7px;
+
+    background-color: #343148FF;
+    color: #D7C49EFF;
+
+    border-radius: 10px;
+}
+
+.machine-board-name{
+    font-family: pixel;
+
+    margin-top: -570px;
+    margin-right: 270px;
+    margin-bottom: 570px;
+    padding: 7px;
+
+    background-color: #343148FF;
+    color: #D7C49EFF;
+
+    border-radius: 10px;
+    
+}
+
+.hide{
+    display: none;
+}
+
 /* SHIP PLACEMENT AND HIGHLIGHT */
 
 .ship-highlight{

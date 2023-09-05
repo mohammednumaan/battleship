@@ -38,10 +38,11 @@ function gameInstructions(){
             <li>Objective Of This Game : To Be The First One To Sink The Enemy's Ships.</li>
             <li>Your Board : Your Board Belongs on the Left Hand Side.</li>
             <li>Set Your Board : Press Start To Begin Placing Your Ships. To Change Direction, Simply Click the <b>Direction</b> Button.</li>
-            <li>Set Your Ships : Hover Over The Board To Place Your Ships.<li>
+            <li>Set Your Ships : Hover Over The Board To Place Your Ships.</li>
             <li>Turns : Your Turn is First Turn.</li>
         </ul>
         <p class='note'>After Placing Your Ships, the battle has begun! Good Luck! :)</p>
+        <p class='note'>If any of the players hit the ship, they get to go again! :/</p>
     </p>`
 
     return instructionsDiv;

@@ -1,6 +1,9 @@
 // IMPORT
 
+import { boxEventListners } from './utilities/boxListners';
+import { directionSwitch } from './utilities/switchButton';
 const Player = require('./player')
+
 
 // INITIALIZES PLAYERS
 
@@ -23,6 +26,7 @@ let gameOver = false;
 // GENERATES PLAYER'S BOARDS/GRIDS
 
 function generateBoard(playerBoard, containerName, classToAdd){
+
     const container = generateContainer(containerName)
     for (let i = 0; i < playerBoard.length; i++){
         for(let j = 0; j < playerBoard.length; j++){
@@ -33,6 +37,7 @@ function generateBoard(playerBoard, containerName, classToAdd){
             cell.dataset.y = j
         };
     };
+
 };
 
 // GENERATES PLAYER'S CONTAINERS
@@ -46,6 +51,27 @@ function generateContainer(classToAdd){
     document.body.appendChild(boardContainer)
     return container;
 };
+
+// GENERATES BOARD NAMES
+
+function displayBoardNames(){
+
+    const nameContainer = document.createElement('div')
+    const userBoardName = document.createElement('p')
+    const machineBoardName = document.createElement('p')
+
+    userBoardName.textContent = "Your Board"
+    machineBoardName.textContent = "Machine's Board"
+
+    nameContainer.classList.add('name-container')
+    userBoardName.classList.add('user-board-name')
+    machineBoardName.classList.add('machine-board-name')
+
+    nameContainer.appendChild(userBoardName)
+    nameContainer.appendChild(machineBoardName)
+    document.body.appendChild(nameContainer)
+
+}
 
 // GENERATES WINNER MESSAGE AND RESTART BUTTON
 
@@ -107,6 +133,7 @@ function gameLoop() {
 
     generateBoard(user.game.board, 'user-board', 'user-cell')
     generateBoard(machine.game.board, 'machine-board', 'machine-cell')
+    displayBoardNames()
     placeUserShips()
     placeMachineShips()
 
@@ -166,57 +193,6 @@ function placeMachineShips(){
 }
 
 
-// BOX/CELLS EVENT LISTNERS
-
-function boxEventListners(box){
-    box.addEventListener('mouseenter', (event) => {
-        if (placedAllShips === true) return
-
-        if (user.game.isValidCoords(currentShip, Number(event.target.dataset.x), Number(event.target.dataset.y)) === false){
-            // highlightShips(box, 'add', 'wrong-ship')
-            return;
-        }
-        highlightShips(box, 'add', 'ship-highlight')
-    })
-
-   
-    box.addEventListener('mouseleave', (event) => {
-        
-        if (placedAllShips === true) return
-    
-        if (user.game.isValidCoords(currentShip, Number(event.target.dataset.x), Number(event.target.dataset.y)) === false){
-            return;
-        }
-        highlightShips(box,'remove', 'ship-highlight')
-
-    });
-    
-    box.addEventListener('click', (event) => {
-        
-        highlightShips(box, 'remove', 'ship-highlight')
-        if(placedAllShips === true){
-            return;
-        }
-
-        if (user.game.placeShip(currentShip, Number(event.target.dataset.x), Number(event.target.dataset.y)) === false){
-            return;
-        }
-
-        if (user.game.isValidCoords(currentShip, Number(event.target.dataset.x), Number(event.target.dataset.y)) === false){
-            return;
-        }
-
-        if(currentShip === user.game.allShips[4]) {
-            placedAllShips = true;
-        }
-                       
-        user.game.placeShip(currentShip, Number(event.target.dataset.x), Number(event.target.dataset.y))
-        highlightShips(box, 'add', 'placed-ship')
-        getNextShip()
-
-    }); 
-    
-}
 
 // CHECKS THE GAME WINNER
 
@@ -236,39 +212,31 @@ function gameWinner(){
     return gameOver;
 }
 
-
-// SWITCHED SHIPS DIRECTION FOR SHIP PLACEMENT (ONLY FOR USER PLAYER OBJECT)
-
-function directionSwitch() {
-    const switchDirection = document.createElement('button')
-
-    switchDirection.type = 'button'
-    switchDirection.id = 'direction-button'
-    switchDirection.textContent = `Direction`
-    document.body.appendChild(switchDirection)
-
-    switchDirection.addEventListener('click', () => {
-
-        if(isCurrentShipVertical === true){
-            switchDirection.textContent = `Horizontal`
-            user.game.allShips.forEach(ship => ship.vertical = false)
-            isCurrentShipVertical = false;
-            
-
-        }
-        else{
-            switchDirection.textContent = `Vertical`
-            user.game.allShips.forEach(ship => ship.vertical = true)
-            isCurrentShipVertical = true;
-        }
-
-
-    })
-
-}
+// GET THE NEXT SHIP IN THE USERS SHIP ARRAY
 
 function getNextShip() {
     let currentShipIndex = user.game.allShips.indexOf(currentShip)
     currentShip = user.game.allShips[currentShipIndex + 1]
+
+    if(currentShipIndex === 4){
+        let array = document.body.children
+        array[3].classList.add('hide')
+    }
 }
-export {generateBoard, gameLoop}
+
+// EXPORT
+
+export {
+    generateBoard, 
+    gameLoop, 
+    getNextShip, 
+    highlightShips, 
+    placedAllShips, 
+    user, 
+    machine, 
+    currentShip, 
+    isCurrentShipVertical,
+    boardContainer
+}
+
+// END OF CODE

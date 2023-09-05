@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "dist-command" : "git add dist && git commit -m 'Initial Dist Subtree Commit.'"
+    "dist-command": "git add dist && git commit -m 'Initial Dist Subtree Commit.'",
+    "dist-push": "git subtree push --prefix dist origin gh-pages"
   },
   "keywords": [],
   "author": "",
