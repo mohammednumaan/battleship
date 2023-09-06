@@ -56,5 +56,5 @@ Testing for this project was done through <b>Jest</b>.
 
 <ul>
   <li>The Fonts used in this project is called <b>Summer Pixel Wide 22</b> by Suolahti Type from https://www.fontspace.com/</li>
-  <li>The Color Palette was found in</li>
+  <li>The Color Palette was found in https://designwizard.com/blog/colour-combination/</li>
 </ul>
