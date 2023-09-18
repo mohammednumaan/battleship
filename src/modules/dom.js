@@ -156,7 +156,7 @@ function gameLoop() {
             document.body.children[5].classList.add('attack-message-unreveal')
             if (placedAllShips === false) return;
             if (user.turn === false) return;
-            endGame('test')
+
             attackGameLoop(event.target)
 
             if(gameWinner() === true){
