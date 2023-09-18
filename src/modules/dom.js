@@ -76,10 +76,15 @@ function displayBoardNames(){
 // GENERATES WINNER MESSAGE AND RESTART BUTTON
 
 function endGame(winner){
+
+    boardContainer.classList.add('overlay')
+    document.body.children[2].classList.add('overlay')
+    document.body.children[0].classList.add('overlay')
     
     const winnerDiv = document.createElement('div')
     winnerDiv.classList.add('winner-div')
-
+    
+    winnerDiv.classList.add('show')
     const winnerMessage = document.createElement('p')
     winnerMessage.classList.add('winner-message')
 
@@ -89,7 +94,7 @@ function endGame(winner){
     restartButton.textContent = 'Restart Game?'
     winnerMessage.innerHTML = `
     <p>
-        <h1>${winner} Win The Game!</h1>
+        <h1>${winner} Wins The Game!</h1>
         ${winner} Was The First To Sink All Of The Enemy Ships
 
     </p>`
@@ -97,12 +102,15 @@ function endGame(winner){
     winnerDiv.appendChild(winnerMessage)
     winnerDiv.appendChild(restartButton)
     document.body.appendChild(winnerDiv)
+    document.body.children[5].classList.add('hide')
 
     restartButton.addEventListener('click', () => {
+
+        winnerDiv.classList.add('slideOut')
+        boardContainer.classList.add('backdropOut')
         window.location.reload()
     })
 
-    // boardContainer.classList.add('overlay')
 
 }
 
@@ -129,25 +137,30 @@ function highlightShips(box, performAction, classes){
 // MAIN GAME LOOP
 
 function gameLoop() {
+    
     user.switchTurn()
 
     generateBoard(user.game.board, 'user-board', 'user-cell')
     generateBoard(machine.game.board, 'machine-board', 'machine-cell')
+ 
     displayBoardNames()
+
     placeUserShips()
     placeMachineShips()
+    
 
     const machineBoard = document.querySelectorAll('.machine-cell')
     machineBoard.forEach(box => {
 
         box.addEventListener('click', (event) => {
+            document.body.children[5].classList.add('attack-message-unreveal')
             if (placedAllShips === false) return;
             if (user.turn === false) return;
-            
+            endGame('test')
             attackGameLoop(event.target)
 
             if(gameWinner() === true){
-                if(user.winner == true) endGame('You');
+                if(user.winner == true) endGame('User');
                 else endGame('Machine');
             }  
         });
@@ -221,6 +234,12 @@ function getNextShip() {
     if(currentShipIndex === 4){
         let array = document.body.children
         array[3].classList.add('hide')
+        array[4].classList.add('hide')
+
+        const attackMessage = document.createElement('p')
+        attackMessage.textContent = 'Attack Here! Good Luck :)'
+        attackMessage.classList.add('attack-message')
+        document.body.appendChild(attackMessage)
     }
 }
 
@@ -238,5 +257,6 @@ export {
     isCurrentShipVertical,
     boardContainer
 }
+
 
 // END OF CODE

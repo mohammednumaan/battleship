@@ -6,11 +6,17 @@ import { isCurrentShipVertical, user } from "../dom"
 
 function directionSwitch() {
 
+    const message = document.createElement('p')
+    message.classList.add('message')
+    message.textContent = 'Place Your Ships :)'
+
     const switchDirection = document.createElement('button')
     switchDirection.type = 'button'
     switchDirection.id = 'direction-button'
     switchDirection.textContent = `Direction`
+
     document.body.appendChild(switchDirection)
+    document.body.appendChild(message)
     
     switchDirection.addEventListener('click', () => {
 
